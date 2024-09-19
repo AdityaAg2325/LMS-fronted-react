@@ -157,7 +157,7 @@ const CategoriesAdmin = ({setLoading}) => {
           <div className="search">
             <input
               type="text"
-              placeholder="Search Categories"
+              placeholder="Search by Name"
               className="searchbar"
               onChange={handleSearchChange}
             ></input>

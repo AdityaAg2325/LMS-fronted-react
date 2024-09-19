@@ -167,7 +167,7 @@ const UsersAdmin = ({setLoading}) => {
           <div className="search">
             <input
               type="text"
-              placeholder="Search Users"
+              placeholder="Search by Mobile Number"
               className="searchbar"
               onChange={handleSearchChange}
             />

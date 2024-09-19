@@ -173,7 +173,7 @@ const BooksAdmin = ({setLoading}) => {
           <div className="search">
             <input
               type="text"
-              placeholder="Search Books"
+              placeholder="Search by Title"
               className="searchbar"
               onChange={handleSearchChange}
             ></input>
