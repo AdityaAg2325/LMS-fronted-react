@@ -1,0 +1,12 @@
+.dash-area{
+    padding-left: 15rem;
+    padding-top: 1rem;
+    background-color: #F4F4F4;
+}
+
+
+@media (max-width: 1024px) {
+    .dash-area{
+        padding-left: 11.2rem;
+    }
+}

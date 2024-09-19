@@ -1,0 +1,40 @@
+   .toast {
+    min-width: 250px;
+    padding: 16px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    z-index: 9999;
+    opacity: 0;
+    animation: fadeInOut 3s forwards;
+  }
+  
+  .toast-success {
+    background-color: #28a745;
+  }
+  
+  .toast-error {
+    background-color: #dc3545;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+

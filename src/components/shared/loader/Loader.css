@@ -1,0 +1,15 @@
+.loader-container{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.579);
+    z-index: 10009;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-container img {
+    height: 10rem;
+    width: 10rem;
+}

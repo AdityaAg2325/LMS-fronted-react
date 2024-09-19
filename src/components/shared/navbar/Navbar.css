@@ -1,0 +1,161 @@
+  body, ul, li, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .navbar-item {
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    padding: 5px;
+  }
+
+  .navbar-item:hover{
+    text-decoration: none;
+    transform: scale(1.1);
+    color: #006F5E;
+    transition: .3s;
+    border: none;
+    border-radius: 3px;
+  }
+  
+  .search-icon {
+    cursor: pointer;
+    margin-top: 2.5px;
+  }
+  
+  .login-logout {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+  }
+  
+  .login-logout:hover {
+    background-color: #e67e22;
+  }
+  
+  .searchbar{
+    border: none;
+    margin-right: 0.5px;
+    margin-left: auto;
+    flex-grow: 1;
+    outline: none;
+    min-width: 200px;
+  }
+
+.nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 3rem;
+}
+
+.search {
+  margin-left: auto;
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  width: 20rem;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-items {
+  gap: 0.5rem;
+  margin: auto;
+  color: black;
+}
+
+.navbar-logo {
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 5px;
+}
+
+.shop-name {
+  font-weight: bold;
+  color: #000000;
+  font-family: cursive;
+  font-size: larger;
+}
+
+nav {
+    background-color: #fff;
+    padding: 1.5rem 0;
+    border-radius: 0px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    box-shadow: 0 1px 3px #006F5E;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    margin: 0 1rem;
+  }
+  
+  nav ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, text-decoration 0.3s;
+  }
+  
+  .login-logout {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .login-logout:hover,
+  .login-logout:focus {
+    background-color: #ddd;
+    color: #000;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .logo{
+    height: 50px;
+    width: auto;
+    margin-top: 5px;
+    padding-left: 3.5rem;
+  }
+
+  @media (max-width: 1024px){
+    nav{
+      padding: 2rem 0;
+    }
+  }

@@ -1,0 +1,26 @@
+.btn {
+    background-color: #006F5E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .btn:hover {
+    background-color: #29464E;
+  }
+  
+
+  @media (max-width: 1024px) {
+    .btn{
+      margin: 10px 2px;
+      font-size: 13px;
+    }
+  }
+  

@@ -1,0 +1,200 @@
+.admin-section {
+    padding: 1.25rem 0rem 1.25rem 1.25rem;
+    padding-top: 4.5rem;
+  }
+  
+  .admin-section h2 {
+    text-align: center;
+  }
+  
+  .books-table {
+    width: 97%;
+    border-collapse: collapse;
+    margin: 10px 10px 3px 10px;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    font-size: 0.8rem;
+  }
+  
+  .books-table th, .books-table td {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .books-table th {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #006F5E;
+    border-bottom: 3px solid #006F5E;
+    font-family: "Kanit", sans-serif;
+  }
+  
+  .books-table tr {
+    font-family: "Kanit", sans-serif;
+  }
+  .books-table tr:not(:last-child) td {
+    border-bottom: 1px solid #006F5E;
+  }
+  
+  .search-logo {
+    cursor: pointer;
+    width: 1.4rem;
+  }
+
+  .searchbar{
+    border: none;
+    margin-right: 0.5px;
+    margin-left: auto;
+    flex-grow: 1;
+    outline: none;
+    min-width: 200px;
+    background-color: #F4F4F4;
+
+  }
+  .search {
+    margin-left: auto;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.25rem 0.5rem;
+    width: 20rem;
+    margin: 7px 0;
+  }
+
+  .admin-page-mid{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 4rem;
+  }
+
+  .form-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1.25rem 0 1.25rem;
+  }
+  .modal-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 14px 0 10px 0;
+  }
+  
+  .books-view{
+    background-color: #fff;
+    border: 1px solid #006F5E;
+    color: #006F5E;
+    border-radius: 5px;
+    padding: 2px 0.8rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  .books-view:hover{
+    color: #fff;
+    background-color: #006F5E;
+    scale: 1.05;
+  }
+
+  .edit-logo{
+    width: 1.25rem;
+  }
+
+  .edit-logo:hover{
+    scale: 1.07;
+  }
+
+  .modifications{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    cursor: pointer;
+    padding-left: 0;
+  }
+  .table-parent{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+    width: 90%;
+  }
+  .table-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .admin-page-header{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #006F5E;
+    font-size: 1rem;
+  }
+  .view-btn{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 0.4rem;
+  }
+
+  .paginate{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .admin-page-search{
+    display: flex;
+    gap: 1rem;
+  }
+  .modal-select{
+    width: 60%;
+  }
+  .select-parent{
+    width: 60%;
+  }
+  .select-error{
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .table-parent {
+      overflow-x: scroll;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+    .admin-section{
+      width: 94%;
+      padding-top: 7rem;
+    }
+    .admin-page-mid{
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .search{
+      margin: 13px 0;
+    }
+    .admin-page-search{
+      gap: 3rem;
+      margin-top: 1.5rem;
+    }
+    .books-table th{
+      font-size: 10px;
+    }
+    .books-table td{
+      font-size: 10px;
+    }
+    .edit-logo{
+      width: 12px;
+    }
+    .books-view{
+      font-size: 10px;
+    }
+    .search-logo{
+      width: 14px;
+    }
+  }

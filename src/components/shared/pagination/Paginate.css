@@ -1,0 +1,25 @@
+.paginate-logo {
+    width: 1rem;
+}
+
+.paginate-prev-btn{
+    display: flex;
+    font-size: 0.8rem;
+    cursor: pointer;
+    gap: 1rem;
+}
+
+.paginate-prev-btn:hover{
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.paginate-parent {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.paginate-page-num{
+    font-size: 0.65rem;
+    color: rgb(154, 154, 154);
+}

@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form input {
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 18px;
+    min-width: 200px;
+  }
+  
+  
+  

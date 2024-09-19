@@ -1,0 +1,76 @@
+.login {
+    display: flex;
+    height: 25rem;
+    gap: 12rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+  }
+  
+  .login-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 2rem;
+  }
+  
+  .radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 22px;
+  }
+  
+  .radio-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radio-input{
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0.8rem;
+    margin-right: 4px;
+  }
+ 
+.login-input {
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  min-width: 200px;
+  margin-bottom: 5px;
+}
+.login-header {
+  font-family: fangsong;
+  font-weight: bold;
+  font-size: 2.7rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.login-line{
+  width: 1px;
+  height: 68vh;
+  background-color: #29464E;
+}
+
+.label-text {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+input[type="radio"] {
+  accent-color: #29464E;
+}

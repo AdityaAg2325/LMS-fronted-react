@@ -1,0 +1,105 @@
+ .main-content {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .welcome{
+    font-size: 1.5rem;
+    font-family: fantasy;
+    margin-right: 5px;
+  }
+
+  .admin-name{
+    font-size: 1.5rem;
+    font-family: fantasy;
+    color: #006F5E;
+  }
+  .welcome-parent{
+    display: flex;
+  }
+  .admin-date{
+    font-size: 1rem;
+    margin: 10px 0 15px 0;
+    color: #acacac;
+  }
+  .dash-tables{
+    display: flex;
+    justify-content: center;
+    margin: 2.25rem 0 0rem 0;
+  }
+
+  .user-dash-table{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    padding-top: 10px;
+  }
+
+  .user-dash-table-header{
+    font-family: Josefin Sans;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .see-more{
+    font-size: 12px;
+    color: #006F5E;
+    border: none;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 10px 0 7px 0;
+    margin: 0.7rem;
+  }
+  .see-more:hover{
+    transform: scale(1.07);
+    transition: 0.2s;
+    font-weight: bold;
+  }
+  .see-more-container{
+    display: flex;
+    justify-content: end;
+    width: 90%;
+  }
+  .welcome-admin {
+    padding-left: 3rem;
+    padding-top: 1rem;
+  }
+
+  .book-title{
+    font-family: Josefin Sans;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .book-title-parent{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .book-line{
+    width: 80%;
+    height: 2px;
+    margin-bottom: 1rem;
+    background-color: #006F5E;
+  }
+
+
+@media (max-width: 1024px) {
+  .main-content{
+    flex-wrap: wrap;
+  }
+  .dash-tables{
+    flex-direction: column;
+  }
+  .user-dash-table{
+    width: 100%;
+  }
+  .welcome-admin{
+    padding-top: 0;
+  }
+}
+  
