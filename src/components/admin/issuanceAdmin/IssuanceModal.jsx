@@ -23,13 +23,63 @@ const IssuanceModal = ({
     type: "",
   });
 
+  const [errors, setErrors] = useState({
+    returnTime: ""
+  });
+
+  const [dateChanged, setDateChanged] = useState(false);
+
+  const getReturnTime = (type) => {
+    if (type === 'Take away') {
+      const selectedDate = issuanceData.returnTime;
+      const currentTime = new Date().toLocaleTimeString('en-US', {hour12: false});
+
+      const finalReturnTime = `${selectedDate}T${currentTime}`;
+      console.log(finalReturnTime);
+      
+      return finalReturnTime;
+    } else {
+      const selectedTime = issuanceData.returnTime;
+      const currentDate = new Date().toLocaleDateString('en-CA');
+
+      const finalReturnTime = dateChanged ? `${currentDate}T${selectedTime}:00` : `${currentDate}T${selectedTime}`;
+      console.log(finalReturnTime);
+      
+      return finalReturnTime;
+    }
+  }
+
+  const validate = () => {
+    let isValid = true;
+    const newErrors = {
+      returnTime: ''
+    }
+    const currentTime = new Date().toLocaleTimeString('en-US', {hour12: false});
+    if (issuanceData.returnTime < currentTime) {
+      newErrors.returnTime = `Return time can't be before than current time!`
+      isValid = false;
+    }
+    if(!isValid){
+      setErrors(newErrors)
+    }
+    return isValid;
+  }
+
+  const getDate = (date) => {
+    return new Date(date).toLocaleDateString('en-CA');
+  }
+
+  const getTime = (date) => {
+    return new Date(date).toLocaleTimeString('en-US', {hour12: false});
+  }
+
   useEffect(() => {
     if (selectedIssuance) {
       setIssuanceData({
         userId: selectedIssuance?.user?.id,
         bookId: selectedIssuance?.book?.id,
         status: selectedIssuance?.status,
-        returnTime: selectedIssuance?.expectedReturnTime,
+        returnTime: selectedIssuance?.type === 'In house' ? getTime(selectedIssuance?.expectedReturnTime) : getDate(selectedIssuance?.expectedReturnTime),
         status: selectedIssuance?.status,
         type: selectedIssuance?.type,
       });
@@ -42,11 +92,16 @@ const IssuanceModal = ({
         type: "",
       });
     }
+    setErrors({
+      returnTime: ''
+    })
   }, [selectedIssuance]);
 
   const handleEdit = async () => {
+    if(validate()){
     try {
       setLoading(true)
+      issuanceData.returnTime = getReturnTime(issuanceData.type)
       const data = await updateIssuance(issuanceData, selectedIssuance?.id);
       setToastMessage(data?.message || "Issuance updated successfully!");
       setShowToast(true);
@@ -60,6 +115,7 @@ const IssuanceModal = ({
       handleCloseModal();
       setLoading(false)
     }
+  }
   };
 
   const handleChange = (e) => {
@@ -68,6 +124,7 @@ const IssuanceModal = ({
       ...prevData,
       [id]: value,
     }));
+    setDateChanged(true);
   };
 
   return (
@@ -103,13 +160,27 @@ const IssuanceModal = ({
           >
             Return Time:
           </label>
-          <input
+          <div>
+            {issuanceData?.type === 'Take away' ? <input
+              className="login-input"
+              type="date"
+              id="returnTime"
+              value={issuanceData.returnTime}
+              onChange={handleChange}
+              required
+              min={new Date().toISOString().split('T')[0]}
+            /> : 
+            <input
             className="login-input"
-            type="datetime-local"
+            type="time"
             id="returnTime"
             value={issuanceData.returnTime}
             onChange={handleChange}
-          />
+            required
+            min={new Date().toISOString().split('T')[1]}
+          />}
+            {errors.returnTime && <div className="error-text">{errors.returnTime}</div>}
+          </div>
         </div>
         <div className="modal-button">
           <Button onClick={handleEdit} type="submit" text={"Update"} />

@@ -18,7 +18,7 @@ const UsersModal = ({
   setToastMessage,
   setToastType,
   setShowToast,
-  setLoading
+  setLoading,
 }) => {
   const [userData, setUserData] = useState({
     name: "",
@@ -33,6 +33,16 @@ const UsersModal = ({
     password: "",
   });
 
+  useEffect(() => {
+    if (!isModalOpen) {
+      setUserData({
+        name: "",
+        email: "",
+        mobileNumber: "",
+        password: "",
+      });
+    }
+  }, [isModalOpen]);
   useEffect(() => {
     if (selectedUser) {
       setUserData({
@@ -118,19 +128,21 @@ const UsersModal = ({
   const handleAdd = async () => {
     if (validateUser()) {
       try {
-        setLoading(true)
+        setLoading(true);
         const data = await createUser(userData);
         setToastMessage(data?.message || "User added successfully!");
         setShowToast(true);
         setToastType("success");
         handleAddUser();
       } catch (error) {
-        setToastMessage(error?.message || "User already exist with same credentials!");
+        setToastMessage(
+          error?.message || "User already exist with same credentials!"
+        );
         setToastType("error");
         setShowToast(true);
       } finally {
         handleCloseModal();
-        setLoading(false)
+        setLoading(false);
         setUserData({
           name: "",
           email: "",
@@ -144,7 +156,7 @@ const UsersModal = ({
   const handleEdit = async () => {
     if (validateUser()) {
       try {
-        setLoading(true)
+        setLoading(true);
         const data = await updateUser(userData, selectedUser?.mobileNumber);
         setToastMessage(data?.message || "User updated successfully!");
         setShowToast(true);
@@ -156,7 +168,7 @@ const UsersModal = ({
         setToastType("success");
       } finally {
         handleCloseModal();
-        setLoading(false)
+        setLoading(false);
       }
     }
   };
@@ -173,18 +185,18 @@ const UsersModal = ({
             Name:
           </label>
           <div>
-          <input
-            className="login-input"
-            type="text"
-            id="name"
-            value={userData.name}
-            onChange={handleChange}
-            required
-          />
-          {errors.name && <div className="error-text">{errors.name}</div>}
+            <input
+              className="login-input"
+              type="text"
+              id="name"
+              value={userData.name}
+              onChange={handleChange}
+              required
+            />
+            {errors.name && <div className="error-text">{errors.name}</div>}
           </div>
         </div>
-        
+
         <div className="form-group">
           <label
             htmlFor="email"
@@ -194,18 +206,18 @@ const UsersModal = ({
             E-mail:
           </label>
           <div>
-          <input
-            className="login-input"
-            type="text"
-            id="email"
-            value={userData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && <div className="error-text">{errors.email}</div>}
+            <input
+              className="login-input"
+              type="text"
+              id="email"
+              value={userData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <div className="error-text">{errors.email}</div>}
           </div>
         </div>
-        
+
         <div className="form-group">
           <label
             htmlFor="mobileNumber"
@@ -215,17 +227,17 @@ const UsersModal = ({
             Mobile:
           </label>
           <div>
-          <input
-            className="login-input"
-            type="text"
-            id="mobileNumber"
-            value={userData.mobileNumber}
-            onChange={handleChange}
-            required
-          />
-          {errors.mobileNumber && (
-            <div className="error-text">{errors.mobileNumber}</div>
-          )}
+            <input
+              className="login-input"
+              type="text"
+              id="mobileNumber"
+              value={userData.mobileNumber}
+              onChange={handleChange}
+              required
+            />
+            {errors.mobileNumber && (
+              <div className="error-text">{errors.mobileNumber}</div>
+            )}
           </div>
         </div>
         <div className="modal-button">

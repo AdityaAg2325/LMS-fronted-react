@@ -18,8 +18,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom --transformIgnorePatterns 'node_modules/(?!axios)/'",
+    "coverage": "react-scripts test --env=jsdom --transformIgnorePatterns 'node_modules/(?!axios)/' --watchAll=false --coverage",
+    "eject": "react-scripts eject",
+    "type": "module"
   },
   "eslintConfig": {
     "extends": [

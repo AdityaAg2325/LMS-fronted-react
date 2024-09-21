@@ -84,13 +84,16 @@ const UserDashboard = () => {
       <h2 className="admin-page-header" style={{marginTop: '10px'}}>Your History</h2>
       <div className="admin-page-mid">
       </div>
-        <Table fields={fields} entries={userHistoryData} type={'user-history'} pageNumber={pageNumber} pageSize={pageSize}/>
+        {userHistoryData && userHistoryData.length>0 ?
+        <Table fields={fields} entries={userHistoryData} type={'user-history'} pageNumber={pageNumber} pageSize={pageSize}/> : 
+        <div className="no-data-found">No data found</div>}
         <div className="paginate">
+        {userHistoryData && userHistoryData.length>0 ?
         <Paginate
           currentPage={pageNumber}
           totalPages={totalPages}
           onPageChange={setPageNumber}
-        />
+        /> : <div></div>}
       </div>
     </div>
   )

@@ -18,14 +18,16 @@ const Paginate = ({ totalPages, currentPage, onPageChange }) => {
 
   return (
     <div className="paginate-parent">
-      <div className="paginate-prev-btn" onClick={handlePrev}>
+      <div className={`paginate-prev-btn ${currentPage === 0 ? "disabled" : ""}`}
+        onClick={currentPage === 0 ? null : handlePrev}>
         <img src={previous} alt="previous" className="paginate-logo" />
         <div className="prev-text">Previous</div>
       </div>
         <div className="paginate-page-num">
             Page {currentPage+1} of {totalPages}
         </div>
-      <div className="paginate-prev-btn" onClick={handleNext}>
+      <div className={`paginate-prev-btn ${currentPage + 1 === totalPages ? "disabled" : ""}`}
+        onClick={currentPage + 1 === totalPages ? null : handleNext}>
         <div className="prev-text">Next</div>
         <img src={next} alt="next" className="paginate-logo" />
       </div>

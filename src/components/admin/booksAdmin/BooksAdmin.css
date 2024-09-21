@@ -19,6 +19,7 @@
   .books-table th, .books-table td {
     padding: 0.5rem;
     text-align: left;
+    font-size: 14px;
   }
   
   .books-table th {
@@ -74,7 +75,6 @@
   .form-group{
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin: 0 1.25rem 0 1.25rem;
   }
   .modal-button{
@@ -159,6 +159,14 @@
   .select-error{
     width: 100%;
   }
+  .no-data-found{
+    position: fixed;
+    color: #ccc;
+    left: 54.5%;
+    top: 27%;
+    font-family: 'Poppins';
+    font-weight: 500;
+  }
 
   @media (max-width: 1024px) {
     .table-parent {
@@ -186,7 +194,7 @@
       font-size: 10px;
     }
     .books-table td{
-      font-size: 10px;
+      font-size: 15px;
     }
     .edit-logo{
       width: 12px;

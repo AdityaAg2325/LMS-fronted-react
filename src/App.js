@@ -41,7 +41,7 @@ function App() {
     setLoading(true);
     const timeOut = setTimeout(() => {
       setLoading(false);
-    }, 500)
+    }, 1000)
   }, [location])
 
   const getUser = async (token) => {

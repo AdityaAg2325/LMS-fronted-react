@@ -21,8 +21,8 @@ const AdminHOC = (Component) => function HOC() {
 
   return (
     <>
-    {loading && <Loader />}
-    <div className='adminhoc'>
+    {loading && <Loader data-testid="loader"/>}
+    <div className='adminhoc' data-testid="adminhoc">
         <Sidebar items={sidebarItems} />
         <div className='dash-area'>
           <Component loading={loading} setLoading={setLoading} />

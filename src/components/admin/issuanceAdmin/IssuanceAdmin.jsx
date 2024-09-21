@@ -43,6 +43,7 @@ const IssuanceAdmin = ({setLoading}) => {
   const [toastType, setToastType] = useState("");
 
   const loadIssuances = async () => {
+    if(search.length>2 || search.length==0){
     try{
       setLoading(true)
       const data = await fetchAllIssuances(pageNumber, pageSize, search);
@@ -54,6 +55,7 @@ const IssuanceAdmin = ({setLoading}) => {
       setLoading(false)
     }
   }
+}
 
   const handleOpenModal = (issunace = null) => {
     setSelectedIssuance(issunace);
@@ -79,7 +81,7 @@ const IssuanceAdmin = ({setLoading}) => {
   const fields = [
     {
         index: 1,
-        title: "Id"
+        title: "Sr.No."
     },
     {
         index: 2,
@@ -115,19 +117,21 @@ const IssuanceAdmin = ({setLoading}) => {
 },
   ]
 
-  useEffect(()=>{
-    loadIssuances();
-  },[pageNumber, pageSize])
+  // useEffect(()=>{
+  //   loadIssuances();
+  // },[pageNumber, pageSize])
 
   useEffect(() => {
     const timout = setTimeout(() => {
       if(search.length>2 || search.length==0){
+        if(search){
+          setPageNumber(0)
+        }
           loadIssuances();
         }
-        
       }, 1000)
     return () => clearTimeout(timout);
-  }, [search]);
+  }, [search, pageNumber, pageSize]);
 
 
   return (
@@ -148,6 +152,7 @@ const IssuanceAdmin = ({setLoading}) => {
           </div>
         </div>
       </div>
+      {issuanceList && issuanceList.length>0 ?
       <Table
         onEditClick={handleOpenModal}
         fields={fields}
@@ -155,7 +160,7 @@ const IssuanceAdmin = ({setLoading}) => {
         type={"issuance"}
         pageNumber={pageNumber}
         pageSize={pageSize}
-      />
+      /> : <div className="no-data-found">No data found</div>}
       <IssuanceModal
         title={"Edit Issuance"}
         isModalOpen={isModalOpen}
@@ -168,11 +173,12 @@ const IssuanceAdmin = ({setLoading}) => {
         setLoading={setLoading}
       />
       <div className="paginate">
+        {issuanceList && issuanceList.length>0 ?
         <Paginate
           currentPage={pageNumber}
           totalPages={totalPages}
           onPageChange={setPageNumber}
-        />
+        /> : <div></div>}
       </div>
       <Toast
         message={toastMessage}

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="paginate-parent"
+  >
+    <div
+      class="paginate-prev-btn "
+    >
+      <img
+        alt="previous"
+        class="paginate-logo"
+        src="previous.png"
+      />
+      <div
+        class="prev-text"
+      >
+        Previous
+      </div>
+    </div>
+    <div
+      class="paginate-page-num"
+    >
+      Page 3 of 5
+    </div>
+    <div
+      class="paginate-prev-btn "
+    >
+      <div
+        class="prev-text"
+      >
+        Next
+      </div>
+      <img
+        alt="next"
+        class="paginate-logo"
+        src="next.png"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

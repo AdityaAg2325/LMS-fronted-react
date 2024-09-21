@@ -50,6 +50,7 @@ const CategoriesAdmin = ({setLoading}) => {
 
 
   const loadCategories = async () => {
+    if(search.length>2 || search.length==0){
     try {
       setLoading(true)
       const data = await fetchAllCategories(pageNumber, pageSize, search);
@@ -60,7 +61,7 @@ const CategoriesAdmin = ({setLoading}) => {
     } finally {
       setLoading(false)
     }
-  };
+  }}
 
   const handleOpenModal = (category = null) => {
     setIsModalOpen(true);
@@ -75,7 +76,7 @@ const CategoriesAdmin = ({setLoading}) => {
   const fields = [
     {
       index: 1,
-      title: "Category ID",
+      title: "Sr. No.",
     },
     {
       index: 2,
@@ -129,18 +130,21 @@ const CategoriesAdmin = ({setLoading}) => {
     setCategoryToDelete(category);
   }
 
-  useEffect(() => {
-    loadCategories();
-  }, [pageNumber, pageSize]);
+  // useEffect(() => {
+  //   loadCategories();
+  // }, [pageNumber, pageSize]);
 
   useEffect(() => {
     const timout = setTimeout(() => {
       if(search.length>2 || search.length==0){
+        if(search){
+          setPageNumber(0)
+        }
           loadCategories();
         }
       }, 1000)
     return () => clearTimeout(timout);
-  }, [search]);
+  }, [search, pageNumber, pageSize]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim());
@@ -172,6 +176,7 @@ const CategoriesAdmin = ({setLoading}) => {
           />
         </div>
       </div>
+      {categoryList && categoryList.length>0 ?
       <Table
         onEditClick={handleOpenModal}
         fields={fields}
@@ -180,7 +185,8 @@ const CategoriesAdmin = ({setLoading}) => {
         onDeleteClick={handleOpenConfirmDeletePopup}
         pageNumber={pageNumber}
         pageSize={pageSize}
-      />
+      /> : <div className="no-data-found">No data found</div>
+    }
       <CategoriesModal
         title={selectedCategory ? "Edit Category" : "Add New Category"}
         isModalOpen={isModalOpen}
@@ -194,11 +200,12 @@ const CategoriesAdmin = ({setLoading}) => {
         setLoading={setLoading}
       />
       <div className="paginate">
+        {categoryList && categoryList.length>0 ? 
         <Paginate
           currentPage={pageNumber}
           totalPages={totalPages}
           onPageChange={setPageNumber}
-        />
+        /> : <div></div>}
       </div>
       <Toast message={toastMessage} type={toastType} show={showToast} onClose={() => setShowToast(false)} />
       <ConfirmDeletePopup 

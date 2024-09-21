@@ -35,6 +35,19 @@ const BooksModal = ({
     quantity: "",
     categoryName: "",
   });
+
+  useEffect(()=> {
+    if(!isModalOpen){
+      setBookData({
+        title: "",
+        author: "",
+        quantity: 1,
+        image: "",
+        categoryName: "",
+      })
+    }
+  }, [isModalOpen])
+
   useEffect(() => {
     if (selectedBook) {
       setBookData({
@@ -167,9 +180,9 @@ const BooksModal = ({
   const handleEdit = async () => {
     if (validateBook()) {
       try {
-        const catId = Number(bookData.categoryName);
-        delete bookData.categoryName;
-        bookData.categoryId = catId;
+        // const catId = Number(bookData.categoryName);
+        // delete bookData.categoryName;
+        // bookData.categoryId = catId;
         setLoading(true)
         const data = await updateBook(bookData, selectedBook?.id); // Register the new user
         setToastMessage(data?.message || "Book updated successfully!");

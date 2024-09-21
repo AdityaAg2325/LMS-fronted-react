@@ -17,6 +17,14 @@ const [errors, setErrors] = useState({
   name: ""
 });
 
+useEffect(()=> {
+  if(!isModalOpen){
+    setCategoryData({
+      name: ''
+    })
+  }
+}, [isModalOpen])
+
 useEffect(() => {
   if (selectedCategory) {
     setCategoryData({
@@ -90,7 +98,7 @@ const handleAdd = async () => {
 }
 }
 const handleEdit = async () => {
-  if(validateCategory){
+  if(validateCategory()){
   try {
     setLoading(true)
     const data = await updateCategory(categoryData, selectedCategory?.id);  // Register the new user

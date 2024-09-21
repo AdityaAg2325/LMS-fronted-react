@@ -107,7 +107,7 @@ const AdminDashboard = ({setLoading}) => {
   const userFields = [
     {
       index: 1,
-      title: "ID"
+      title: "Sr. No."
     },
     {
       index: 2,
@@ -126,7 +126,7 @@ const AdminDashboard = ({setLoading}) => {
   const categoryFields = [
     {
       index: 1,
-      title: "Category ID"
+      title: "Index"
     },
     {
       index: 1,

@@ -1,12 +1,12 @@
 import React from "react";
 import './Home.css'
-import Login2 from "../login/Login2";
+import Login from "../login/Login";
 
 const Home = () => {
   return (
     <div className="home-parent">
       <div className="home-container">
-        <Login2 />
+        <Login />
       </div>
     </div>
   );

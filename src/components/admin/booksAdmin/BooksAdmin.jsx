@@ -53,6 +53,7 @@ const BooksAdmin = ({setLoading}) => {
   const [bookToDelete, setBookToDelete] = useState(null)
 
   const loadBooks = async () => {
+    if(search.length>2 || search.length==0){
     try {
       setLoading(true);
       const data = await fetchAllBooks(pageNumber, pageSize, search);
@@ -63,7 +64,8 @@ const BooksAdmin = ({setLoading}) => {
     } finally {
       setLoading(false)
     }
-  };
+  } 
+}
 
   const handleOpenModal = (book = null) => {
     setSelectedBook(book);
@@ -78,14 +80,11 @@ const BooksAdmin = ({setLoading}) => {
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim());
   };
-  const handleSearchClick = async () => {
-    await loadBooks();
-  };
 
   const fields = [
     {
       index: 1,
-      title: "Book ID",
+      title: "Sr. No.",
     },
     {
       index: 2,
@@ -153,16 +152,14 @@ const BooksAdmin = ({setLoading}) => {
   useEffect(() => {
     const timout = setTimeout(() => {
       if(search.length>2 || search.length==0){
+        if(search && pageNumber>0){
+          setPageNumber(0)
+        }
           loadBooks();
         }
-        
       }, 1000)
     return () => clearTimeout(timout);
-  }, [search]);
-
-  useEffect(() => {
-    loadBooks();
-  }, [pageNumber, pageSize]);
+  }, [search, pageNumber, pageSize]);
 
   return (
     <div className="admin-section">
@@ -177,7 +174,7 @@ const BooksAdmin = ({setLoading}) => {
               className="searchbar"
               onChange={handleSearchChange}
             ></input>
-            <div className="search-icon" onClick={handleSearchClick}>
+            <div className="search-icon" >
               <img src={searchLogo} alt="!" className="search-logo" />
             </div>
           </div>
@@ -189,6 +186,7 @@ const BooksAdmin = ({setLoading}) => {
         </div>
         </div>
       </div>
+      {bookList && bookList.length > 0 ?
       <Table
         onEditClick={handleOpenModal}
         fields={fields}
@@ -198,7 +196,8 @@ const BooksAdmin = ({setLoading}) => {
         onAssignClick={openAssignUser}
         pageNumber={pageNumber}
         pageSize={pageSize}
-      />
+      /> : <div className="no-data-found">No data found</div>
+    }
       <BooksModal
         title={selectedBook ? "Edit Book" : "Add New Book"}
         isModalOpen={isModalOpen}
@@ -221,11 +220,12 @@ const BooksAdmin = ({setLoading}) => {
         setLoading={setLoading}
       />
       <div className="paginate">
+        {bookList && bookList.length>0 ? 
         <Paginate
           currentPage={pageNumber}
           totalPages={totalPages}
           onPageChange={setPageNumber}
-        />
+        /> : <div></div>}
       </div>
       <Toast
         message={toastMessage}

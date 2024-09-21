@@ -154,6 +154,20 @@ nav {
     padding-left: 3.5rem;
   }
 
+  .profile-logo{
+    cursor: pointer;
+  }
+
+  .profile-logo .tooltip-container .tooltip-text {
+    transform: translateX(-50%) translateY(5.5rem);
+  }
+
+  .user-profile-logo{
+    padding-left: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
   @media (max-width: 1024px){
     nav{
       padding: 2rem 0;

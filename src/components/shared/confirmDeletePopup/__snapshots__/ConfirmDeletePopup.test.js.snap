@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when isOpen is true 1`] = `
+<DocumentFragment>
+  <div
+    class="confirm-modal-overlay"
+  >
+    <div
+      class="confirm-modal-container"
+    >
+      <h3
+        class="confirm-modal-header"
+      >
+        Confirm Delete
+      </h3>
+      <p
+        class="confirm-modal-message"
+      >
+        Are you sure you want to delete this item?
+      </p>
+      <div
+        class="confirm-modal-buttons"
+      >
+        <button
+          class="button btn-cancel"
+        >
+          Cancel
+        </button>
+        <button
+          class="button btn-confirm"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

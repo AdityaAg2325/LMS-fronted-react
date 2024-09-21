@@ -14,11 +14,10 @@ export async function fetchAllIssuances (pageNumber, pageSize, search){
 export async function createIssuance(issuanceData){
     try{
     const response = await app.post('/api/issuances/create', issuanceData);
-    return {success: true, data: response.data};
+    return response.data;
 }catch(error){
-    // throw new Error(error?.response?.data?.message);
-   return {success: false, message: error?.response?.data?.message}
-    
+    throw new Error(error?.response?.data?.message);
+   //return {success: false, message: error?.response?.data?.message}
 }}
 
 export async function deleteIssuance(id){
