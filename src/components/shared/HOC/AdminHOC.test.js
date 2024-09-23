@@ -1,57 +1,32 @@
-// import { render, screen } from '@testing-library/react';
-// import AdminHOC from './AdminHOC';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import rootReducer from '../../../redux/rootReducer.js';
+// AdminHOC.test.js
+import React from 'react';
+import { render, screen } from '../../../testUtils';
+// import '@testing-library/jest-dom/extend-expect';
+import AdminHOC from './AdminHOC';
+import Loader from '../loader/Loader';
 
-// // Create a mock store
-// const store = createStore(rootReducer, {
-//   loading: false, // Default state
-// });
 
-// const DummyComponent = () => <div>Dummy Component</div>;
+// Mock Component to be wrapped by AdminHOC
+const MockComponent = () => <div data-testid="mock-component">Mock Component</div>;
 
-// describe('AdminHOC component', () => {
-//   it('renders Loader when loading is true', () => {
-//     // Set loading state to true before rendering
-//     store.dispatch({ type: 'SET_LOADING', payload: true });
+describe('AdminHOC Component', () => {
+  test('should render the wrapped component correctly', () => {
+    const WrappedComponent = AdminHOC(MockComponent);
+    render(<WrappedComponent />);
 
-//     render(
-//       <Provider store={store}>
-//         <AdminHOC Component={DummyComponent} />
-//       </Provider>
-//     );
+    // Check if Sidebar is rendered
+    expect(screen.getByTestId('adminhoc')).toBeInTheDocument();
 
-//     // Check if Loader is rendered
-//     expect(screen.getByTestId('loader')).toBeInTheDocument();
-//   });
+    // Check if MockComponent (the child component) is rendered
+    expect(screen.getByTestId('mock-component')).toBeInTheDocument();
+  });
 
-//   it('renders Sidebar with correct items', () => {
-//     render(
-//       <Provider store={store}>
-//         <AdminHOC Component={DummyComponent} />
-//       </Provider>
-//     );
+  test('should not display the loader when loading is false', () => {
+    const WrappedComponent = AdminHOC(MockComponent);
+    render(<WrappedComponent />);
 
-//     // Check if the sidebar is rendered
-//     expect(screen.getByTestId('adminhoc')).toBeInTheDocument();
+    // Ensure loader is not displayed initially (default state)
+    expect(screen.queryByTestId('loader')).toBeNull();
+  });
 
-//     // Check sidebar items
-//     expect(screen.getByText('Dashboard')).toBeInTheDocument();
-//     expect(screen.getByText('Categories')).toBeInTheDocument();
-//     expect(screen.getByText('Books')).toBeInTheDocument();
-//     expect(screen.getByText('Users')).toBeInTheDocument();
-//     expect(screen.getByText('Issuances')).toBeInTheDocument();
-//   });
-
-//   it('renders the wrapped component', () => {
-//     render(
-//       <Provider store={store}>
-//         <AdminHOC Component={DummyComponent} />
-//       </Provider>
-//     );
-
-//     // Check if DummyComponent is rendered
-//     expect(screen.getByText('Dummy Component')).toBeInTheDocument();
-//   });
-// });
+});

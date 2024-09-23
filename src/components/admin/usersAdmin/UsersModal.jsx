@@ -134,6 +134,7 @@ const UsersModal = ({
         setShowToast(true);
         setToastType("success");
         handleAddUser();
+        handleCloseModal();
       } catch (error) {
         setToastMessage(
           error?.message || "User already exist with same credentials!"
@@ -141,7 +142,6 @@ const UsersModal = ({
         setToastType("error");
         setShowToast(true);
       } finally {
-        handleCloseModal();
         setLoading(false);
         setUserData({
           name: "",
@@ -233,7 +233,8 @@ const UsersModal = ({
               id="mobileNumber"
               value={userData.mobileNumber}
               onChange={handleChange}
-              required
+              required={title === 'Add New User' ? true : false}
+              disabled={title==='Edit User' ? true : false}
             />
             {errors.mobileNumber && (
               <div className="error-text">{errors.mobileNumber}</div>

@@ -50,12 +50,18 @@ const BooksModal = ({
 
   useEffect(() => {
     if (selectedBook) {
+      // console.log(categoriesList);
+      
+      const catItemObj = categoriesList.find(catItem => catItem.name === selectedBook.categoryName);
+      // console.log(catItemObj);
+      
+
       setBookData({
         title: selectedBook.title,
         author: selectedBook.author,
         quantity: selectedBook.quantity,
         image: selectedBook.image,
-        categoryName: selectedBook.categoryName || "",
+        categoryName: Number(catItemObj?.id) || "",
       });
     } else {
       setBookData({
@@ -153,12 +159,12 @@ const BooksModal = ({
         setShowToast(true);
         setToastType("success");
         handleAddBook();
+        handleCloseModal();
       } catch (error) {
         setToastMessage(error?.message || "Error occurred while saving the book.");
         setToastType("error");
         setShowToast(true);
       } finally {
-        handleCloseModal();
         setLoading(false)
         setErrors({
           title: "",
@@ -180,9 +186,10 @@ const BooksModal = ({
   const handleEdit = async () => {
     if (validateBook()) {
       try {
-        // const catId = Number(bookData.categoryName);
-        // delete bookData.categoryName;
-        // bookData.categoryId = catId;
+        const catId = Number(bookData.categoryName);
+        delete bookData.categoryName;
+        bookData.categoryId = catId;
+
         setLoading(true)
         const data = await updateBook(bookData, selectedBook?.id); // Register the new user
         setToastMessage(data?.message || "Book updated successfully!");

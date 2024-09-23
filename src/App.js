@@ -20,6 +20,7 @@ import BookHistory from "./components/admin/bookHistory/BookHistory";
 import ContactUs from "./components/shared/contactUs/ContactUs";
 import AboutUs from "./components/shared/aboutUs/AboutUs";
 import Loader from "./components/shared/loader/Loader";
+import NotFound from "./pages/notFound/NotFound";
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
         <Route path="/issuance" element={<AdminRoutes><IssuanceAdmin /></AdminRoutes>} />
         <Route path="/user-history/:mobileNumber" element={<AdminRoutes><UserHistory /></AdminRoutes>} />
         <Route path="/book-history/:id" element={<AdminRoutes><BookHistory /></AdminRoutes>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

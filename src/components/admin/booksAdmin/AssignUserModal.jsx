@@ -215,7 +215,7 @@ const AssignUserModal = ({
             <option value="">Select User</option>
             {userList.map((user) => (
               <option key={user.id} value={`${user?.id}.${user?.name}`}>
-                {user.mobileNumber}
+                {`${user.mobileNumber} (${user.name})`}
               </option>
             ))}
           </select>

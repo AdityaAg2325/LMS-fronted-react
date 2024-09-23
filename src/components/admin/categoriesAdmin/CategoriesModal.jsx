@@ -83,13 +83,14 @@ const handleAdd = async () => {
     setShowToast(true);
     setToastType("success");
     handleAddCategory();
+    handleCloseModal();
   } catch (error) {
     setToastMessage(error?.message || "Failed to create category.");
     setToastType("error");
     setShowToast(true);
     setLoading(false)
   } finally {
-    handleCloseModal();
+    
     setLoading(false)
     setCategoryData({
       name: ""

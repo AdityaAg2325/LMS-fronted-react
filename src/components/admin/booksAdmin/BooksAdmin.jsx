@@ -104,10 +104,14 @@ const BooksAdmin = ({setLoading}) => {
     },
     {
       index: 7,
-      title: "Actions",
+      title: "Category",
     },
     {
       index: 8,
+      title: "Actions",
+    },
+    {
+      index: 9,
       title: "Issuances",
     },
   ];

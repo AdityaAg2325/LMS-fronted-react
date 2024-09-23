@@ -69,7 +69,7 @@ const Table = ({
                       ) {
                         return <td>{value}</td>;
                       } else if (type === "book") {
-                        if (key !== "image" && key !== "categoryName") {
+                        if (key !== "image") {
                           return (
                             <td>
                               {typeof value === "object" ? value?.title : value}
@@ -161,6 +161,7 @@ const Table = ({
                             type !== "user-history" && (
                               <Tooltip tooltipText="Delete">
                                 <img
+                                  data-testid={`delete-icon-${item?.id}`}
                                   src={deleteLogo}
                                   alt="delete"
                                   className="edit-logo"
