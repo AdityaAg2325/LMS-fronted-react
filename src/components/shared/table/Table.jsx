@@ -67,7 +67,7 @@ const Table = ({
                         type === "category" ||
                         type === "dash-category"
                       ) {
-                        return <td>{value}</td>;
+                        return <td className="category-td">{value}</td>;
                       } else if (type === "book") {
                         if (key !== "image") {
                           return (

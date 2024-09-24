@@ -89,11 +89,11 @@ const BookHistory = ({setLoading}) => {
       <h2 className="admin-page-header" style={{marginTop: '10px'}}>Book's History</h2>
       <div className="admin-page-mid">
       </div>
-        {bookHistoryData && bookHistoryData>0 ? 
+        {bookHistoryData && bookHistoryData.length>0 ? 
         <Table fields={fields} entries={bookHistoryData} type={'book-history'} pageNumber={pageNumber} pageSize={pageSize}/> :
         <div className='no-data-found'>No data found</div>}
         <div className="paginate">
-        {bookHistoryData && bookHistoryData>0 ?
+        {bookHistoryData && bookHistoryData.length>0 ?
         <Paginate
           currentPage={pageNumber}
           totalPages={totalPages}

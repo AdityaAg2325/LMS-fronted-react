@@ -117,9 +117,6 @@ const IssuanceAdmin = ({setLoading}) => {
 },
   ]
 
-  // useEffect(()=>{
-  //   loadIssuances();
-  // },[pageNumber, pageSize])
 
   useEffect(() => {
     const timout = setTimeout(() => {
@@ -167,7 +164,7 @@ const IssuanceAdmin = ({setLoading}) => {
         handleCloseModal={handleCloseModal}
         selectedIssuance={selectedIssuance}
         handleEditIssuance={handleEditIssuance}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}

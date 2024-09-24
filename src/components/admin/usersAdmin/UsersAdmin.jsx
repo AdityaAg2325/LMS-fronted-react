@@ -101,7 +101,7 @@ const UsersAdmin = ({setLoading}) => {
   ];
 
   const handleAddUser = () => {
-    loadUsers(); // Reload users after adding a new user
+    loadUsers();
   };
 
   const handleDeleteUser = async () => {
@@ -128,9 +128,6 @@ const UsersAdmin = ({setLoading}) => {
     setUserToDelete(user);
   };
 
-  // useEffect(() => {
-  //   loadUsers();
-  // }, [pageNumber, pageSize]);
 
   useEffect(() => {
     const timout = setTimeout(() => {
@@ -202,7 +199,7 @@ const UsersAdmin = ({setLoading}) => {
         handleCloseModal={handleCloseModal}
         selectedUser={selectedUser}
         handleAddUser={handleAddUser}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage} 
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}
@@ -212,7 +209,7 @@ const UsersAdmin = ({setLoading}) => {
         isAssignModalOpen={isAssignModalOpen}
         closeAssignModal={closeAssignBook}
         selectedUser={selectedUser}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}

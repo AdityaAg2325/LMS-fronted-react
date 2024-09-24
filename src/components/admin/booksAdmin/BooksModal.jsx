@@ -154,7 +154,7 @@ const BooksModal = ({
         delete bookData.categoryName;
         bookData.categoryId = catId;
         setLoading(true)
-        const data = await createBook(bookData); // Register the new user
+        const data = await createBook(bookData);
         setToastMessage(data?.message || "Book added successfully!");
         setShowToast(true);
         setToastType("success");
@@ -191,7 +191,7 @@ const BooksModal = ({
         bookData.categoryId = catId;
 
         setLoading(true)
-        const data = await updateBook(bookData, selectedBook?.id); // Register the new user
+        const data = await updateBook(bookData, selectedBook?.id);
         setToastMessage(data?.message || "Book updated successfully!");
         setShowToast(true);
         setToastType("success");

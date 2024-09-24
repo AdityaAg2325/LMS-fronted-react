@@ -179,7 +179,7 @@ const CategoriesAdmin = ({ setLoading }) => {
         handleCloseModal={handleCloseModal}
         handleAddCategory={handleAddCategory}
         selectedCategory={selectedCategory}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}

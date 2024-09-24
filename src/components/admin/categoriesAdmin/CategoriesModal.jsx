@@ -78,7 +78,7 @@ const handleAdd = async () => {
   if (validateCategory()){
   try {
     setLoading(true)
-    const data = await createCategory(categoryData);  // Register the new user
+    const data = await createCategory(categoryData);
     setToastMessage(data?.message || "Category added successfully!");
     setShowToast(true);
     setToastType("success");
@@ -102,7 +102,7 @@ const handleEdit = async () => {
   if(validateCategory()){
   try {
     setLoading(true)
-    const data = await updateCategory(categoryData, selectedCategory?.id);  // Register the new user
+    const data = await updateCategory(categoryData, selectedCategory?.id);
     setToastMessage(data?.message || "Category updated successfully!");
     setShowToast(true);
     setToastType("success");

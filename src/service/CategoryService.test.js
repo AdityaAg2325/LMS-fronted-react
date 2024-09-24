@@ -5,15 +5,13 @@ import {
     createCategory,
     updateCategory,
     countAllCategories
-  } from './CategoryService'; // Import your functions
-  import app from './serviceLMS'; // Import the mocked module
+  } from './CategoryService'; 
+  import app from './serviceLMS';
   
-  // Mocking the app (Axios instance)
   jest.mock('./serviceLMS');
   
   describe('Category API functions', () => {
   
-    // Test for fetchCategories
     it('fetchCategories should return data on success', async () => {
       const mockData = [{ id: 1, name: 'Action' }, { id: 2, name: 'Adventure' }];
       app.get.mockResolvedValue({ data: mockData });
@@ -22,8 +20,7 @@ import {
       expect(result).toEqual(mockData);
       expect(app.get).toHaveBeenCalledWith('/api/categories');
     });
-  
-    // Test for deleteCategory
+
     it('deleteCategory should return data on successful deletion', async () => {
       const mockData = { message: 'Category deleted successfully' };
       app.delete.mockResolvedValue({ data: mockData });
@@ -39,8 +36,7 @@ import {
   
       await expect(deleteCategory(999)).rejects.toThrow('Category not found');
     });
-  
-    // Test for fetchAllCategories
+
     it('fetchAllCategories should return paginated data', async () => {
       const mockData = { categories: [], totalPages: 5 };
       app.get.mockResolvedValue({ data: mockData });
@@ -56,7 +52,6 @@ import {
       });
     });
   
-    // Test for createCategory
     it('createCategory should return created data', async () => {
       const mockData = { id: 3, name: 'Science' };
       app.post.mockResolvedValue({ data: mockData });
@@ -73,7 +68,6 @@ import {
       await expect(createCategory({ name: 'Fiction' })).rejects.toThrow('Category already exists');
     });
   
-    // Test for updateCategory
     it('updateCategory should return updated data', async () => {
       const mockData = { id: 1, name: 'Updated Category' };
       app.put.mockResolvedValue({ data: mockData });
@@ -90,7 +84,6 @@ import {
       await expect(updateCategory({ name: 'New Name' }, 999)).rejects.toThrow('Category not found');
     });
   
-    // Test for countAllCategories
     it('countAllCategories should return total count', async () => {
       const mockData = { count: 20 };
       app.get.mockResolvedValue({ data: mockData });

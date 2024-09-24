@@ -1,4 +1,5 @@
 import React from 'react'
+import '../confirmDeletePopup/ConfirmDeletePopup.css'
 
 const ConfirmLogoutPopup = ({ isOpen, onClose, onConfirm }) => {
     if (!isOpen) return null;

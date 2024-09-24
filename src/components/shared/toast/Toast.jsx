@@ -9,7 +9,7 @@ const Toast = ({ message, type, show, duration = 3000, onClose }) => {
       }, duration);
       return () => clearTimeout(timer);
     }
-  }, [show, duration, onClose]);
+  }, [show, duration]);
 
   if (!show) return null;
 

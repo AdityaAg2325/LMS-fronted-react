@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import "./Login2.css";
 import './Login.css';
 import image from "../../assets/login-image.jpeg";
 import Button from "../../components/shared/button/Button";
@@ -46,7 +45,6 @@ const Login = () => {
       } else if (!validateEmailOrMobile(userName)) {
         formErrors.userName = "Enter a valid email or 10-digit mobile number";
       }
-
       return formErrors;
     };
   

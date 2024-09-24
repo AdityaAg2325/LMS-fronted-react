@@ -4,6 +4,7 @@ import next from "../../../assets/next.png";
 import "./Paginate.css";
 
 const Paginate = ({ totalPages, currentPage, onPageChange }) => {
+  
   const handleNext = () => {
     if (totalPages > currentPage+1) {
       onPageChange(currentPage + 1);

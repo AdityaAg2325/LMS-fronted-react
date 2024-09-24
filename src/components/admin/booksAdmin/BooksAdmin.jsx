@@ -208,7 +208,7 @@ const BooksAdmin = ({setLoading}) => {
         handleCloseModal={handleCloseModal}
         handleAddBook={handleAddBook}
         selectedBook={selectedBook}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}
@@ -218,7 +218,7 @@ const BooksAdmin = ({setLoading}) => {
         isAssignModalOpen={isAssignModalOpen}
         closeAssignModal={closeAssignUser}
         selectedBook={selectedBook}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}

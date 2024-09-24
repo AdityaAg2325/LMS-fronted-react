@@ -49,14 +49,14 @@ const UsersModal = ({
         name: selectedUser.name || "",
         email: selectedUser.email || "",
         mobileNumber: selectedUser.mobileNumber || "",
-        password: "", // Password is not populated for editing
+        password: "", 
       });
     } else {
       setUserData({
         name: "",
         email: "",
         mobileNumber: "",
-        password: "", // Empty fields for new user registration
+        password: "", 
       });
     }
     setErrors({

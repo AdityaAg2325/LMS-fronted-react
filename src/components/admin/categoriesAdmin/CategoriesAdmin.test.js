@@ -7,7 +7,6 @@ import AdminHOC from '../../shared/HOC/AdminHOC';
 import ConfirmDeletePopup from '../../shared/confirmDeletePopup/ConfirmDeletePopup';
 
 
-// Mock the service functions
 jest.mock('../../../service/CategoryService', () => ({
     fetchAllCategories: jest.fn(),
     createCategory: jest.fn(),
@@ -148,9 +147,8 @@ describe('CategoriesAdmin Component', () => {
 
         jest.useFakeTimers();
 
-        const setLoading = jest.fn(); // mock the setLoading prop
+        const setLoading = jest.fn(); 
         
-        // Mock the fetchAllCategories response
         fetchAllCategories.mockResolvedValue({
           content: [],
           totalPages: 1,
@@ -162,11 +160,9 @@ describe('CategoriesAdmin Component', () => {
 
         jest.advanceTimersByTime(1000);
       
-        // Simulate clicking the "Add Category" button
         const addButton = screen.getByText('Add Category');
         fireEvent.click(addButton);
       
-        // Wait for the categories to be loaded
         await waitFor(() => {
           expect(fetchAllCategories).toHaveBeenCalled();
         });
@@ -174,10 +170,8 @@ describe('CategoriesAdmin Component', () => {
       
 
     it('should open confirmation popup and delete category on confirm', () => {
-        // const deleteCategories = jest.fn(); // Mock the delete function
-        const setIsConfirmPopupOpen = jest.fn(); // Mock the close popup function
+        const setIsConfirmPopupOpen = jest.fn();
       
-        // Render the component with the necessary props
         const { getByText } = render(
           <ConfirmDeletePopup 
             isOpen={true} 
@@ -186,10 +180,8 @@ describe('CategoriesAdmin Component', () => {
           />
         );
       
-        // Simulate the confirm button click (assuming the button text is 'Confirm')
         fireEvent.click(getByText('Delete'));
       
-        // Expect deleteCategories to have been called
         expect(deleteCategory).toHaveBeenCalled();
       });
       
@@ -198,14 +190,11 @@ describe('CategoriesAdmin Component', () => {
             render(<WrappedComponent setLoading={jest.fn()} />);
         })
       
-        // Simulate opening the modal (assuming there's a button to open it)
         fireEvent.click(screen.getByText('Add Category'));
-      
-        // Simulate closing the modal (assuming there's a "Cancel" button in the modal)
+
         fireEvent.click(screen.getByTestId('modal-cross'));
       
-        // Assert that the modal is closed by checking if it's no longer in the DOM
-        expect(screen.queryByText('Add New Category')).toBeNull(); // Assuming 'Add New Category' text is in the modal
+        expect(screen.queryByText('Add New Category')).toBeNull(); 
       
       });
       

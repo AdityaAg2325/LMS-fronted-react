@@ -35,7 +35,6 @@ const IssuanceModal = ({
       const currentTime = new Date().toLocaleTimeString('en-US', {hour12: false});
 
       const finalReturnTime = `${selectedDate}T${currentTime}`;
-      console.log(finalReturnTime);
       
       return finalReturnTime;
     } else {
@@ -43,8 +42,7 @@ const IssuanceModal = ({
       const currentDate = new Date().toLocaleDateString('en-CA');
 
       const finalReturnTime = dateChanged ? `${currentDate}T${selectedTime}:00` : `${currentDate}T${selectedTime}`;
-      console.log(finalReturnTime);
-      
+      setDateChanged(false);
       return finalReturnTime;
     }
   }
@@ -97,6 +95,12 @@ const IssuanceModal = ({
     })
   }, [selectedIssuance]);
 
+  useEffect(() => {
+    // if (!isModalOpen) {
+      setDateChanged(false);
+    // }
+  }, [isModalOpen])
+
   const handleEdit = async () => {
     if(validate()){
     try {
@@ -107,6 +111,7 @@ const IssuanceModal = ({
       setShowToast(true);
       setToastType("success");
       handleEditIssuance();
+      setDateChanged(false);
     } catch (error) {
       setToastMessage(error?.message || "An Error Occured");
       setShowToast(true);
@@ -124,7 +129,10 @@ const IssuanceModal = ({
       ...prevData,
       [id]: value,
     }));
-    setDateChanged(true);
+    
+    if (id === 'returnTime') {
+      setDateChanged(true);
+    }
   };
 
   return (
