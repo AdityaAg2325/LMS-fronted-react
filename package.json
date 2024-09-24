@@ -18,8 +18,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom --transformIgnorePatterns 'node_modules/(?!axios)/'",
+    "coverage": "react-scripts test --env=jsdom --transformIgnorePatterns 'node_modules/(?!axios)/' --watchAll=false --coverage --collectCoverageFrom='src/components/admin/categoriesAdmin/CategoriesAdmin.jsx' --collectCoverageFrom='src/components/shared/confirmDeletePopup/ConfirmDeletePopup.jsx' --collectCoverageFrom='src/components/shared/HOC/AdminHOC.jsx' --collectCoverageFrom='src/components/shared/modal/Modal.jsx' --collectCoverageFrom='src/components/shared/button/Button.jsx' --collectCoverageFrom='src/components/shared/pagination/Paginate.jsx' --collectCoverageFrom='src/components/shared/toast/Toast.jsx' --collectCoverageFrom='src/components/shared/tooltip/Tooltip.jsx' --collectCoverageFrom='src/service/CategoryService.js' --collectCoverageFrom='src/components/shared/loader/Loader.jsx' --collectCoverageFrom='src/redux/store.js' --collectCoverageFrom='src/redux/rootReducer.js' ",
+    "eject": "react-scripts eject",
+    "type": "module"
   },
   "eslintConfig": {
     "extends": [

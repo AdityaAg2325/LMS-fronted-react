@@ -7,9 +7,9 @@ import users from "../../../assets/group.png";
 import inHouse from "../../../assets/reading.png";
 import category from "../../../assets/category.png";
 import { useNavigate } from "react-router-dom";
-import { countAllUsers, fetchAllUsers } from "../../../service/UserService";
-import { countAllCategories, fetchAllCategories } from "../../../service/CategoryService";
-import { countAllBooks, fetchAllBooks } from "../../../service/BookService";
+import { fetchAllUsers } from "../../../service/UserService";
+import { fetchAllCategories } from "../../../service/CategoryService";
+import { fetchAllBooks } from "../../../service/BookService";
 import BookCard from "../../shared/bookCard/BookCard";
 import Table from "../../shared/table/Table";
 import { useSelector } from "react-redux";
@@ -46,8 +46,6 @@ const AdminDashboard = ({setLoading}) => {
   const loadCount = async () => {
     const statsData = await dashStats()
     setDashStatsData(statsData)
-    console.log(dashStatsData);
-    
   }
 
   useEffect(() => {
@@ -107,7 +105,7 @@ const AdminDashboard = ({setLoading}) => {
   const userFields = [
     {
       index: 1,
-      title: "ID"
+      title: "Sr. No."
     },
     {
       index: 2,
@@ -126,7 +124,7 @@ const AdminDashboard = ({setLoading}) => {
   const categoryFields = [
     {
       index: 1,
-      title: "Category ID"
+      title: "Index"
     },
     {
       index: 1,

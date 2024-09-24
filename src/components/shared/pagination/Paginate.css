@@ -9,10 +9,10 @@
     gap: 1rem;
 }
 
-.paginate-prev-btn:hover{
+/* .paginate-prev-btn:hover{
     transform: scale(1.1);
     transition: 0.2s;
-}
+} */
 
 .paginate-parent {
     display: flex;
@@ -22,4 +22,10 @@
 .paginate-page-num{
     font-size: 0.65rem;
     color: rgb(154, 154, 154);
+}
+
+.paginate-prev-btn.disabled {
+  opacity: 0.5;
+  /* pointer-events: none; */
+  cursor: not-allowed;
 }

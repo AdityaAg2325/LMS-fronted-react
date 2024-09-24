@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const BASE_URL = `http://localhost:8080`
+const BASE_URL = process.env.REACT_APP_API_BASE_URL || `http://localhost:8080`
 
 const app = axios.create({
     baseURL: BASE_URL,
@@ -30,7 +29,7 @@ app.interceptors.response.use(
         console.log(error);
         
         if (error.response && error.response.status === 401) {
-            if (error?.config?.url !== 'http://localhost:8080/api/login' && error?.config?.url !== 'http://localhost:8080/api/current-user') {
+            if (error?.config?.url !== '/api/login' && error?.config?.url !== '/api/current-user') {
                 window.location.href = '/';
             }
         }

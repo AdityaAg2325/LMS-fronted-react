@@ -13,8 +13,8 @@ import searchLogo from "../../../assets/magnifying-glass.png";
 import Toast from "../../shared/toast/Toast";
 import ConfirmDeletePopup from "../../shared/confirmDeletePopup/ConfirmDeletePopup";
 
-const CategoriesAdmin = ({setLoading}) => {
-  const [search, setSearch] = useState('');
+const CategoriesAdmin = ({ setLoading }) => {
+  const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [categoryList, setCategoryList] = useState([]);
@@ -23,12 +23,12 @@ const CategoriesAdmin = ({setLoading}) => {
   let height = window.innerHeight;
 
   const pageSizeByHeight = () => {
-
-  if(height>=1024){
-    return 15
-  }else if (height<=1024){
-    return 10
-  }}
+    if (height >= 1024) {
+      return 15;
+    } else if (height <= 1024) {
+      return 10;
+    }
+  };
   const [pageSize, setPageSize] = useState(pageSizeByHeight());
   const handleResize = () => {
     height = window.innerHeight;
@@ -45,20 +45,21 @@ const CategoriesAdmin = ({setLoading}) => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastType, setToastType] = useState("");
-  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false)
-  const [categoryToDelete, setCategoryToDelete] = useState(null)
-
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+  const [categoryToDelete, setCategoryToDelete] = useState(null);
 
   const loadCategories = async () => {
-    try {
-      setLoading(true)
-      const data = await fetchAllCategories(pageNumber, pageSize, search);
-      setCategoryList(data?.content);
-      setTotalPages(data?.totalPages);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false)
+    if (search.length > 2 || search.length == 0) {
+      try {
+        setLoading(true);
+        const data = await fetchAllCategories(pageNumber, pageSize, search);
+        setCategoryList(data?.content);
+        setTotalPages(data?.totalPages);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -75,7 +76,7 @@ const CategoriesAdmin = ({setLoading}) => {
   const fields = [
     {
       index: 1,
-      title: "Category ID",
+      title: "Sr. No.",
     },
     {
       index: 2,
@@ -91,22 +92,9 @@ const CategoriesAdmin = ({setLoading}) => {
     loadCategories();
   };
 
-  const handleSaveCategory = async (categoryData) => {
-    try {
-      if (selectedCategory) {
-      } else {
-        // Create new user
-        await createCategory(categoryData);
-      }
-      await loadCategories();
-    } catch (error) {
-      console.error("Error saving category:", error);
-    }
-  };
-
   async function deleteCategories() {
     try {
-      setLoading(true)
+      setLoading(true);
       const data = await deleteCategory(categoryToDelete.id);
       setToastMessage(data?.message || "Category deleted successfully!");
       setToastType("success");
@@ -116,37 +104,37 @@ const CategoriesAdmin = ({setLoading}) => {
       setToastMessage(error?.message || "Cannot delete this category.");
       setToastType("error");
       setShowToast(true);
-      setLoading(false)
+      setLoading(false);
     } finally {
-      setIsConfirmPopupOpen(false)
-      // setBookToDelete(null)
-      setLoading(false)
+      setIsConfirmPopupOpen(false);
+      setLoading(false);
     }
   }
 
   const handleOpenConfirmDeletePopup = (category) => {
     setIsConfirmPopupOpen(true);
     setCategoryToDelete(category);
-  }
+  };
+
+  // useEffect(() => {
+  //   loadCategories();
+  // }, [pageNumber, pageSize]);
 
   useEffect(() => {
-    loadCategories();
-  }, [pageNumber, pageSize]);
-
-  useEffect(() => {
+    // loadCategories();
     const timout = setTimeout(() => {
-      if(search.length>2 || search.length==0){
-          loadCategories();
+      if (search.length > 2 || search.length == 0) {
+        if (search) {
+          setPageNumber(0);
         }
-      }, 1000)
+        loadCategories();
+      }
+    }, 1000);
     return () => clearTimeout(timout);
-  }, [search]);
+  }, [search, pageNumber, pageSize]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim());
-  };
-  const handleSearchClick = async () => {
-    await loadCategories();
   };
 
   return (
@@ -157,12 +145,12 @@ const CategoriesAdmin = ({setLoading}) => {
           <div className="search">
             <input
               type="text"
-              placeholder="Search Categories"
+              placeholder="Search by Name"
               className="searchbar"
               onChange={handleSearchChange}
             ></input>
-            <div className="search-icon" onClick={handleSearchClick}>
-            <img src={searchLogo} alt="!" className="search-logo" />
+            <div className="search-icon">
+              <img src={searchLogo} alt="!" className="search-logo" />
             </div>
           </div>
           <Button
@@ -172,39 +160,51 @@ const CategoriesAdmin = ({setLoading}) => {
           />
         </div>
       </div>
-      <Table
-        onEditClick={handleOpenModal}
-        fields={fields}
-        entries={categoryList}
-        type={"category"}
-        onDeleteClick={handleOpenConfirmDeletePopup}
-        pageNumber={pageNumber}
-        pageSize={pageSize}
-      />
+      {categoryList && categoryList.length > 0 ? (
+        <Table
+          onEditClick={handleOpenModal}
+          fields={fields}
+          entries={categoryList}
+          type={"category"}
+          onDeleteClick={handleOpenConfirmDeletePopup}
+          pageNumber={pageNumber}
+          pageSize={pageSize}
+        />
+      ) : (
+        <div className="no-data-found">No data found</div>
+      )}
       <CategoriesModal
         title={selectedCategory ? "Edit Category" : "Add New Category"}
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
-        handleSaveCategory={handleSaveCategory}
         handleAddCategory={handleAddCategory}
         selectedCategory={selectedCategory}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}
       />
       <div className="paginate">
-        <Paginate
-          currentPage={pageNumber}
-          totalPages={totalPages}
-          onPageChange={setPageNumber}
-        />
+        {categoryList && categoryList.length > 0 ? (
+          <Paginate
+            currentPage={pageNumber}
+            totalPages={totalPages}
+            onPageChange={setPageNumber}
+          />
+        ) : (
+          <div></div>
+        )}
       </div>
-      <Toast message={toastMessage} type={toastType} show={showToast} onClose={() => setShowToast(false)} />
-      <ConfirmDeletePopup 
-      isOpen={isConfirmPopupOpen}
-      onClose={()=> setIsConfirmPopupOpen(false)}
-      onConfirm={deleteCategories}
+      <Toast
+        message={toastMessage}
+        type={toastType}
+        show={showToast}
+        onClose={() => setShowToast(false)}
+      />
+      <ConfirmDeletePopup
+        isOpen={isConfirmPopupOpen}
+        onClose={() => setIsConfirmPopupOpen(false)}
+        onConfirm={deleteCategories}
       />
     </div>
   );

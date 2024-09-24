@@ -50,6 +50,7 @@ const UsersAdmin = ({setLoading}) => {
   const [userToDelete, setUserToDelete] = useState(null);
 
   const loadUsers = async () => {
+    if(search.length>2 || search.length==0){
     try {
       setLoading(true)
       const data = await fetchAllUsers(pageNumber, pageSize, search);
@@ -60,7 +61,7 @@ const UsersAdmin = ({setLoading}) => {
     } finally {
       setLoading(false)
     }
-  };
+  }}
 
   const handleOpenModal = (user = null) => {
     setIsModalOpen(true);
@@ -75,7 +76,7 @@ const UsersAdmin = ({setLoading}) => {
   const fields = [
     {
       index: 1,
-      title: "User ID",
+      title: "Sr. No.",
     },
     {
       index: 2,
@@ -100,7 +101,7 @@ const UsersAdmin = ({setLoading}) => {
   ];
 
   const handleAddUser = () => {
-    loadUsers(); // Reload users after adding a new user
+    loadUsers();
   };
 
   const handleDeleteUser = async () => {
@@ -127,19 +128,19 @@ const UsersAdmin = ({setLoading}) => {
     setUserToDelete(user);
   };
 
-  useEffect(() => {
-    loadUsers();
-  }, [pageNumber, pageSize]);
 
   useEffect(() => {
     const timout = setTimeout(() => {
       if(search.length>2 || search.length==0){
+        if(search){
+          setPageNumber(0)
+        }
           loadUsers();
         }
         
       }, 1000)
     return () => clearTimeout(timout);
-  }, [search]);
+  }, [search, pageNumber, pageSize]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value.trim());
@@ -167,7 +168,7 @@ const UsersAdmin = ({setLoading}) => {
           <div className="search">
             <input
               type="text"
-              placeholder="Search Users"
+              placeholder="Search by Mobile Number"
               className="searchbar"
               onChange={handleSearchChange}
             />
@@ -181,6 +182,7 @@ const UsersAdmin = ({setLoading}) => {
           />
         </div>
       </div>
+      {userList && userList.length>0 ? 
       <Table
         onEditClick={handleOpenModal}
         fields={fields}
@@ -190,14 +192,14 @@ const UsersAdmin = ({setLoading}) => {
         onAssignClick={openAssignUser}
         pageNumber={pageNumber}
         pageSize={pageSize}
-      />
+      /> : <div className="no-data-found">No data found</div>}
       <UsersModal
         title={selectedUser ? "Edit User" : "Add New User"}
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
         selectedUser={selectedUser}
         handleAddUser={handleAddUser}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage} 
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}
@@ -207,17 +209,18 @@ const UsersAdmin = ({setLoading}) => {
         isAssignModalOpen={isAssignModalOpen}
         closeAssignModal={closeAssignBook}
         selectedUser={selectedUser}
-        setToastMessage={setToastMessage} // Pass toast state to BooksModal
+        setToastMessage={setToastMessage}
         setToastType={setToastType}
         setShowToast={setShowToast}
         setLoading={setLoading}
       />
       <div className="paginate">
+        {userList && userList.length>0 ? 
         <Paginate
           currentPage={pageNumber}
           totalPages={totalPages}
           onPageChange={setPageNumber}
-        />
+        /> : <div></div>}
       </div>
       <Toast
         message={toastMessage}

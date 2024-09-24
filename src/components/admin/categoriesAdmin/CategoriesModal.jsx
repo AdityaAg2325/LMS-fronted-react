@@ -17,6 +17,14 @@ const [errors, setErrors] = useState({
   name: ""
 });
 
+useEffect(()=> {
+  if(!isModalOpen){
+    setCategoryData({
+      name: ''
+    })
+  }
+}, [isModalOpen])
+
 useEffect(() => {
   if (selectedCategory) {
     setCategoryData({
@@ -70,18 +78,19 @@ const handleAdd = async () => {
   if (validateCategory()){
   try {
     setLoading(true)
-    const data = await createCategory(categoryData);  // Register the new user
+    const data = await createCategory(categoryData);
     setToastMessage(data?.message || "Category added successfully!");
     setShowToast(true);
     setToastType("success");
     handleAddCategory();
+    handleCloseModal();
   } catch (error) {
     setToastMessage(error?.message || "Failed to create category.");
     setToastType("error");
     setShowToast(true);
     setLoading(false)
   } finally {
-    handleCloseModal();
+    
     setLoading(false)
     setCategoryData({
       name: ""
@@ -90,10 +99,10 @@ const handleAdd = async () => {
 }
 }
 const handleEdit = async () => {
-  if(validateCategory){
+  if(validateCategory()){
   try {
     setLoading(true)
-    const data = await updateCategory(categoryData, selectedCategory?.id);  // Register the new user
+    const data = await updateCategory(categoryData, selectedCategory?.id);
     setToastMessage(data?.message || "Category updated successfully!");
     setShowToast(true);
     setToastType("success");

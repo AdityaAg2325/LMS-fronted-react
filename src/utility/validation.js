@@ -28,7 +28,7 @@ export const validatePassword = (password) => {
     const az = validationPatterns.az;
     const number = validationPatterns.number;
     const anyChar = validationPatterns.anyChar;
-    return password.length >= 8 && AZ.test(password) && az.test(password) && number.test(password) && anyChar.test(password);
+    return password.length >= 6 && AZ.test(password) && az.test(password) && number.test(password) && anyChar.test(password);
 };
 
 
